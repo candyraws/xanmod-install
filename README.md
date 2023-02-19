@@ -17,3 +17,8 @@ bash <(curl -Ss "https://raw.githubusercontent.com/candyraws/xanmod-install/main
 不推荐在生产环境下使用
 
 安装成功后默认自动重启，开启BBR+FQ加速，无需额外操作
+
+# 验证BBR是否已经成功开启
+```bash
+cat /proc/sys/net/ipv4/tcp_congestion_control ;sysctl net.core.default_qdisc
+```
