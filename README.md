@@ -15,3 +15,5 @@ bash <(curl -Ss "https://raw.githubusercontent.com/candyraws/xanmod-install/main
 仅在debian系统上进行过测试，理论上deb系的发行版都支持（如ubuntu等），具体自行测试。
 
 不推荐在生产环境下使用
+
+安装成功后默认自动重启，开启BBR+FQ加速，无需额外操作
