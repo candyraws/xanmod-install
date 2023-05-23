@@ -35,7 +35,7 @@ fi
 
 xanmod_page_url="${xanmod_url}${xanmod_version}/"
 xanmod_page_json=$(curl "${xanmod_page_url}" | grep 'net.sf.files' | awk -F' ' '{print $3}')
-xanmod_download_list=$(echo "${xanmod_page_json%;}" | jq -r .[0].download_url)
+xanmod_download_list=$(echo "${xanmod_page_json%;}" | jq -r .[].download_url)
 
 headurl="$(echo "${xanmod_download_list}" | grep 'linux-headers')"
 imgurl="$(echo "${xanmod_download_list}" | grep 'linux-image')"
