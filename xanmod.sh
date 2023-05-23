@@ -18,8 +18,8 @@ remove_kernel() {
 xanmod_type="lts"
 
 xanmod_url="https://sourceforge.net/projects/xanmod/files/releases/${xanmod_type}/"
-xanmod_json=$(curl "${xanmod_url}" | grep 'net.sf.files' | awk -F' ' '{print $3}')
-xanmod_version=$(echo "${xanmod_json%;}" | jq -r .[0].name)
+xanmod_json=$(curl "${xanmod_url}" | awk -F ' ' '/net.sf.files/{print $3}')
+xanmod_version=$(echo "${xanmod_json%;}" | jq -r .[].name | sed -n 1p)
 
 # 检测是否成功获取到最新xanmod版本号
 if [ -z "${xanmod_version}" ]; then
