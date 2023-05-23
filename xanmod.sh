@@ -19,7 +19,7 @@ xanmod_type="lts"
 
 xanmod_url="https://sourceforge.net/projects/xanmod/files/releases/${xanmod_type}/"
 xanmod_json=$(curl "${xanmod_url}" | grep 'net.sf.files' | awk -F' ' '{print $3}')
-xanmod_version=$(echo "${xanmod_json%;}" | jq -r .[].name | sed -n 1p)
+xanmod_version=$(echo "${xanmod_json%;}" | jq -r .[0].name)
 
 # 检测是否成功获取到最新xanmod版本号
 if [ -z "${xanmod_version}" ]; then
@@ -35,7 +35,7 @@ fi
 
 xanmod_page_url="${xanmod_url}${xanmod_version}/"
 xanmod_page_json=$(curl "${xanmod_page_url}" | grep 'net.sf.files' | awk -F' ' '{print $3}')
-xanmod_download_list=$(echo "${xanmod_page_json%;}" | jq -r .[].download_url)
+xanmod_download_list=$(echo "${xanmod_page_json%;}" | jq -r .[0].download_url)
 
 headurl="$(echo "${xanmod_download_list}" | grep 'linux-headers')"
 imgurl="$(echo "${xanmod_download_list}" | grep 'linux-image')"
